@@ -5,14 +5,14 @@ export const MessageList = () => {
 
   useEffect(() => {
     fetch('http://localhost:8080/messages')
-    .then(res => res.json())
-    .then(json => setMessages(json))
+      .then(res => res.json())
+      .then(json => setMessages(json))
   }, [])
 
   return (
     <div>
       {messages.map(message => (
-        <p>{message.text}</p>
+        <p key={message._id}>{message.text}</p>
       )) }
     </div>
   )
