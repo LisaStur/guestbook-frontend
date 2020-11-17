@@ -1,8 +1,12 @@
 import React from 'react'
-import { MessageList } from '../componenents/MessageList'
+import { MessageList } from '../components/MessageList'
+import { MessagePost } from '../components/MesssagePost'
 
 export const Home = () => {
   return (
-    <MessageList />
+    <div>
+      <MessagePost />
+      <MessageList />
+    </div>
   )
 }
