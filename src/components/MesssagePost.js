@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import send from '../assets/send.png'
 
 export const MessagePost = () => {
   const POSTMESSAGE_URL = 'http://localhost:8080/messages'
@@ -23,12 +24,11 @@ export const MessagePost = () => {
   return (
     <MessageForm>
       <TextArea rows= '5' type='text' onChange={event => setText(event.target.value)} />
-      <Button
-        type='submit'
+      <SendMessage
+        type='image'
+        src={send}
         onClick={handleOnSubmit}
-        disabled={text.length < 5 || text.length > 140}>
-        Post
-      </Button>
+        disabled={text.length < 5 || text.length > 140} />
     </MessageForm>
   )
 }
@@ -36,6 +36,7 @@ export const MessagePost = () => {
 const MessageForm = styled.form`
   display: flex;
   flex-direction: column;
+  align-items: center;
   border: 2px solid lightgrey;
   border-radius: 5px;
   margin: 5%;
@@ -43,10 +44,15 @@ const MessageForm = styled.form`
   background-color: #f5f5e9;
 `
 const TextArea = styled.textarea`
+  width: 95%;
   border: 2px solid lightgrey;
   border-radius: 5px;
   margin-bottom: 6px;
 `
-const Button = styled.button`
-  border-radius: 5px;
+const SendMessage = styled.input`
+  height: auto; 
+  width: 50px;
+  :disabled {
+    opacity: 0.4;
+  }
 `

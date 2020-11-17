@@ -19,7 +19,7 @@ export const LikeButton = ({ id, likes }) => {
 
   return (
     <div>
-      <LikeThumb type="image" src={thumb} onClick={handleClick}/>
+      <LikeThumb type='image' src={thumb} onClick={handleClick}/>
   <Liked>{like}</Liked>
     </div>
 
