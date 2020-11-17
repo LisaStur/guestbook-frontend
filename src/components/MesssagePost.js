@@ -16,7 +16,9 @@ export const MessagePost = () => {
         },
         body: JSON.stringify({ text })
       }
-    )
+    ).then(() => {
+      window.location.reload()
+    })
   }
   return (
     <MessageForm>
