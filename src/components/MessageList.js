@@ -11,9 +11,11 @@ export const MessageList = () => {
   useEffect(() => {
     fetch('http://localhost:8080/messages')
       .then(res => res.json())
-      .then(json => setMessages(json))
-    setIsloading(false)
-  })
+      .then(json => {
+        setMessages(json)
+        setIsloading(false)
+      })
+  }, [])
 
   return (
     <div>
@@ -22,8 +24,7 @@ export const MessageList = () => {
         <MessageCard key={message._id}>
           <Message>{message.text}</Message>
           <CreatedAt>{moment(message.createdAt).fromNow()}</CreatedAt>
-          <LikeButton id={message._id}/>
-          <Likes>{message.like}</Likes>
+          <LikeButton id={message._id} likes={message.like}/>
         </MessageCard>
       )) }
     </div>
@@ -45,8 +46,4 @@ const Message = styled.p`
 const CreatedAt = styled.p`
   font-size: 12px;
   text-align: right;
-`
-const Likes = styled.p`
-  font-size: 12px;
-  color: darkgrey:
 `
