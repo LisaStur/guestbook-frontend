@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import thumb from '../assets/thumb.png'
 
 // eslint-disable-next-line react/prop-types
 export const LikeButton = ({ id }) => {
@@ -17,14 +18,23 @@ export const LikeButton = ({ id }) => {
 
   return (
     <div>
-      <Button onClick={handleClick}>
-      Like!
-      </Button>
+      <LikeThumb type="image" src={thumb} onClick={handleClick}/>
     </div>
 
   )
 }
 
-const Button = styled.button`
-  background-color: pink;
+const LikeThumb = styled.input`
+  height: 80px;
+  transition: 0.5s;
+  :hover {
+    height: 90px;
+  }
+  :active {
+    height: 120px;
+    transition: 0.1s;
+  }
+  :focus {
+    outline: none;
+  }
 `
