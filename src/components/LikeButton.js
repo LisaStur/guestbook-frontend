@@ -8,7 +8,7 @@ export const LikeButton = ({ id, likes }) => {
   const handleClick = () => {
     fetch(`http://localhost:8080/messages/${id}/like`,
       {
-        method: 'POST',
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
         },

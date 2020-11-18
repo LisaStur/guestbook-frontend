@@ -52,7 +52,19 @@ const TextArea = styled.textarea`
 const SendMessage = styled.input`
   height: auto; 
   width: 50px;
-  :disabled {
-    opacity: 0.4;
+  transition: 0.5s;
+ 
+  :hover {
+    width: 70px;
+  }
+  :active {
+    width: 100px;
+    transition: 0.2s;
+  }
+  :disabled  {
+    opacity: 0.2;
+  }
+  :disabled:hover {
+    width: 50px;
   }
 `
