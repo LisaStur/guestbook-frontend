@@ -8,7 +8,7 @@ export const LikeButton = ({ id, likes }) => {
   const handleClick = () => {
     fetch(`http://localhost:8080/messages/${id}/like`,
       {
-        method: 'PUT',
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -27,13 +27,13 @@ export const LikeButton = ({ id, likes }) => {
 }
 
 const LikeThumb = styled.input`
-  height: 80px;
+  height: 50px;
   transition: 0.5s;
   :hover {
-    height: 90px;
+    height: 60px;
   }
   :active {
-    height: 120px;
+    height: 80px;
     transition: 0.1s;
   }
   :focus {

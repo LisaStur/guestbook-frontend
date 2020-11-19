@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
+import styled from 'styled-components'
+import pen from '../assets/pen.png'
+import update from '../assets/update.png'
 
 // eslint-disable-next-line react/prop-types
-export const MessageUpdate = ({ id, message }) => {
+export const MessageUpdate = ({ id }) => {
   const UPDATEMESSAGE_URL = `http://localhost:8080/messages/${id}/update`
-  const [text, setText] = useState(message)
+  const [text, setText] = useState('')
+  const [toggled, setToggled] = useState(false)
 
   const handleOnSubmit = event => {
     event.preventDefault()
@@ -22,12 +26,63 @@ export const MessageUpdate = ({ id, message }) => {
   }
 
   return (
-    <form>
-      <textarea rows= '5' type='text' onChange={event => setText(event.target.value)} />
-      <input
-        type='submit'
+    <>
+    <UpdateButton type='image' src={pen} onClick={() => setToggled(!toggled)} />
+    {toggled &&
+    <UpdateForm>
+      <UpdateText rows= '5' type='text' onChange={event => setText(event.target.value)} />
+      <SendUpdate
+        type='image'
+        src={update}
         onClick={handleOnSubmit}
         disabled={text.length < 5 || text.length > 140} />
-    </form>
+    </UpdateForm>}
+    </>
   )
 }
+
+const UpdateButton = styled.input`
+  width: 30px;
+  height: auto;
+  transition: 0.5s;
+  :hover {
+    width: 40px;
+  }
+  :active {
+    width: 50px;
+    transition: 0.1s;
+  }
+  :focus {
+    outline: none;
+  }
+`
+const UpdateForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+const UpdateText = styled.textarea`
+  width: 95%;
+  border: 2px solid lightgrey;
+  border-radius: 5px;
+`
+const SendUpdate = styled.input`
+  width: 30px;
+  height: auto;
+  padding-top: 5%;
+  transition: 0.5s;
+ 
+  :hover {
+    width: 35px;
+  }
+  :active {
+    width: 40px;
+    transition: 0.2s;
+  }
+  :disabled  {
+    opacity: 0.2;
+  }
+  :disabled:hover {
+    width: 30px;
+  }
+`
