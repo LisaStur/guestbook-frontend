@@ -44,6 +44,7 @@ export const MessageUpdate = ({ id }) => {
 const UpdateButton = styled.input`
   width: 30px;
   height: auto;
+  padding: 12px 0 12px 0;
   transition: 0.5s;
   :hover {
     width: 40px;
@@ -63,6 +64,7 @@ const UpdateForm = styled.form`
 `
 const UpdateText = styled.textarea`
   width: 95%;
+  margin-left: 12px;
   border: 2px solid lightgrey;
   border-radius: 5px;
 `

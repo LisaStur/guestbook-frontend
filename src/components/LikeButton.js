@@ -19,13 +19,19 @@ export const LikeButton = ({ id, likes }) => {
   }
 
   return (
-    <div>
-      <LikeThumb type='image' src={thumb} onClick={handleClick}/>
+    <LikeSection>
       <Liked>{like}</Liked>
-    </div>
+      <LikeThumb type='image' src={thumb} onClick={handleClick}/>
+    </LikeSection>
 
   )
 }
+
+const LikeSection = styled.div`
+  display: flex;
+  flex-direction: row;  
+  justify-content: flex-end;
+`
 
 const LikeThumb = styled.input`
   height: 50px;
@@ -42,6 +48,9 @@ const LikeThumb = styled.input`
   }
 `
 const Liked = styled.p`
-  font-size: 12px;
+  display: flex;
+  font-size: 24px;
   color: darkgrey;
+  padding-right: 5%;
+  margin-block-start:12px;
 `

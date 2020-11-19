@@ -24,11 +24,15 @@ export const MessageList = () => {
       {isLoading && <Spinner />}
       {messages.map(message => (
         <MessageCard key={message._id}>
-          <Message>{message.text}</Message>
-          <CreatedAt>{moment(message.createdAt).fromNow()}</CreatedAt>
-          <LikeButton id={message._id} likes={message.like}/>
-          <MessageDelete id={message._id} />
-          <MessageUpdate id={message._id} />
+          <PostedMessage>
+            <Message>{message.text}</Message>
+            <CreatedAt>{moment(message.createdAt).fromNow()}</CreatedAt>
+            <LikeButton id={message._id} likes={message.like}/>
+          </PostedMessage>
+          <Interactions>
+            <MessageDelete id={message._id} />
+            <MessageUpdate id={message._id} />
+          </Interactions>
         </MessageCard>
       )) }
     </div>
@@ -37,17 +41,27 @@ export const MessageList = () => {
 
 const MessageCard = styled.section`
   display: flex;  
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
   border: 2px solid lightgrey;
   border-radius: 5px;
   margin: 5%;
-  padding: 12px ;
+  padding: 12px;
   background-color: #f5f5e9;
+`
+const PostedMessage = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  padding-left: 12px;
 `
 const Message = styled.p`
   font-size: 20px;
 `
 const CreatedAt = styled.p`
   font-size: 12px;
-  text-align: right;
 `
+const Interactions = styled.div`
+  display: flex;
+  flex-direction: column;
+  `
