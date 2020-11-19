@@ -4,6 +4,7 @@ import moment from 'moment'
 import { LikeButton } from './LikeButton'
 import { Spinner } from './Spinner'
 import { MessageUpdate } from './MessasgeUpdate'
+import { MessageDelete } from './MessageDelete'
 
 export const MessageList = () => {
   const [messages, setMessages] = useState([])
@@ -26,7 +27,8 @@ export const MessageList = () => {
           <Message>{message.text}</Message>
           <CreatedAt>{moment(message.createdAt).fromNow()}</CreatedAt>
           <LikeButton id={message._id} likes={message.like}/>
-          <MessageUpdate id={message._id} message={message.text}/>
+          <MessageDelete id={message._id} />
+          <MessageUpdate id={message._id} />
         </MessageCard>
       )) }
     </div>

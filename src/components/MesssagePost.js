@@ -55,10 +55,10 @@ const SendMessage = styled.input`
   transition: 0.5s;
  
   :hover {
-    width: 70px;
+    width: 60px;
   }
   :active {
-    width: 100px;
+    width: 70px;
     transition: 0.2s;
   }
   :disabled  {

@@ -5,10 +5,11 @@ import thumb from '../assets/thumb.png'
 // eslint-disable-next-line react/prop-types
 export const LikeButton = ({ id, likes }) => {
   const [like, setLike] = useState(likes)
+
   const handleClick = () => {
     fetch(`http://localhost:8080/messages/${id}/like`,
       {
-        method: 'POST',
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -20,7 +21,7 @@ export const LikeButton = ({ id, likes }) => {
   return (
     <div>
       <LikeThumb type='image' src={thumb} onClick={handleClick}/>
-  <Liked>{like}</Liked>
+      <Liked>{like}</Liked>
     </div>
 
   )
