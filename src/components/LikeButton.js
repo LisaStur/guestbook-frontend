@@ -49,8 +49,8 @@ const LikeThumb = styled.input`
 `
 const Liked = styled.p`
   display: flex;
+  color: #606060;
   font-size: 24px;
-  color: darkgrey;
-  padding-right: 5%;
+  padding-right: 20%;
   margin-block-start:12px;
 `

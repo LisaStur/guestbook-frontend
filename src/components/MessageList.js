@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import moment from 'moment'
 import { LikeButton } from './LikeButton'
@@ -6,18 +7,21 @@ import { Spinner } from './Spinner'
 import { MessageUpdate } from './MessasgeUpdate'
 import { MessageDelete } from './MessageDelete'
 
+const MESSAGES_URL = 'http://localhost:8080/messages'
+
 export const MessageList = () => {
+  const text = useSelector(store => store.message.message.text)
   const [messages, setMessages] = useState([])
   const [isLoading, setIsloading] = useState(true)
 
   useEffect(() => {
-    fetch('http://localhost:8080/messages')
+    fetch(MESSAGES_URL)
       .then(res => res.json())
       .then(json => {
         setMessages(json)
         setIsloading(false)
       })
-  }, [])
+  }, [text])
 
   return (
     <div>
@@ -26,12 +30,16 @@ export const MessageList = () => {
         <MessageCard key={message._id}>
           <PostedMessage>
             <Message>{message.text}</Message>
-            <CreatedAt>{moment(message.createdAt).fromNow()}</CreatedAt>
-            <LikeButton id={message._id} likes={message.like}/>
+            <Created>
+              <CreatedBy>{message.author.name}</CreatedBy>
+              <CreatedAt>{moment(message.createdAt).fromNow()}</CreatedAt>
+            </Created>
+
           </PostedMessage>
           <Interactions>
             <MessageDelete id={message._id} />
             <MessageUpdate id={message._id} />
+            <LikeButton id={message._id} likes={message.like}/>
           </Interactions>
         </MessageCard>
       )) }
@@ -58,10 +66,20 @@ const PostedMessage = styled.div`
 const Message = styled.p`
   font-size: 20px;
 `
+const Created = styled.div`
+  display: flex;
+  flex-direction: row;  
+`
+const CreatedBy = styled.p`
+  font-size: 12px;
+  font-style: italic;
+  padding-right: 2%;
+`
 const CreatedAt = styled.p`
   font-size: 12px;
 `
 const Interactions = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   `

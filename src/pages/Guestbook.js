@@ -2,7 +2,7 @@ import React from 'react'
 import { MessageList } from '../components/MessageList'
 import { MessagePost } from '../components/MesssagePost'
 
-export const Home = () => {
+export const Guestbook = () => {
   return (
     <div>
       <MessagePost />

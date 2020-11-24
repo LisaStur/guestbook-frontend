@@ -4,7 +4,7 @@ import pen from '../assets/pen.png'
 import update from '../assets/update.png'
 
 // eslint-disable-next-line react/prop-types
-export const MessageUpdate = ({ id }) => {
+export const MessageUpdate = ({ id, accessToken }) => {
   const UPDATEMESSAGE_URL = `http://localhost:8080/messages/${id}/update`
   const [text, setText] = useState('')
   const [toggled, setToggled] = useState(false)
@@ -16,6 +16,7 @@ export const MessageUpdate = ({ id }) => {
       {
         method: 'PUT',
         headers: {
+          Authorization: accessToken,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ text })
