@@ -11,6 +11,7 @@ const MESSAGES_URL = 'http://localhost:8080/messages'
 
 export const MessageList = () => {
   const text = useSelector(store => store.message.message.text)
+  const like = useSelector(store => store.message.message.like)
   const [messages, setMessages] = useState([])
   const [isLoading, setIsloading] = useState(true)
 
@@ -21,7 +22,7 @@ export const MessageList = () => {
         setMessages(json)
         setIsloading(false)
       })
-  }, [text])
+  }, [text, like])
 
   return (
     <div>

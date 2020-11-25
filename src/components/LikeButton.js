@@ -53,4 +53,4 @@ const Liked = styled.p`
   font-size: 24px;
   padding-right: 20%;
   margin-block-start:12px;
-`
+  `

@@ -23,15 +23,16 @@ export const MessagePost = () => {
       .then(res => res.json())
       .then(json => {
         dispatch(message.actions.setText({ text: json.text }))
-        console.log(json)
+        setText('')
       })
       .catch(err => console.log('error:', err))
   }
+
   return (
     <MessageForm>
       <Image src={house} alt='house'/>
       <Welcome>Welcome! Please post me a messsage!</Welcome>
-      <TextArea rows= '5' type='text' onChange={event => setText(event.target.value)} />
+      <TextArea rows= '5' type='text' value={text} onChange={event => setText(event.target.value)} />
       <SendMessage
         type='image'
         src={send}
@@ -68,7 +69,7 @@ const SendMessage = styled.input`
   height: auto; 
   width: 50px;
   transition: 0.5s;
- 
+
   :hover {
     width: 60px;
   }
