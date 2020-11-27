@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   message: {
     text: '',
-    userId: 0
+    userId: 0,
+    update: false
   }
 }
 

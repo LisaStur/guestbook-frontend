@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
+import { message } from '../reducers/message'
 import pen from '../assets/pen.png'
 import update from '../assets/update.png'
 
 // eslint-disable-next-line react/prop-types
 export const MessageUpdate = ({ id, accessToken }) => {
   const UPDATEMESSAGE_URL = `http://localhost:8080/messages/${id}/update`
+  const dispatch = useDispatch()
   const [text, setText] = useState('')
   const [toggled, setToggled] = useState(false)
 
@@ -20,10 +23,13 @@ export const MessageUpdate = ({ id, accessToken }) => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ text })
-      }
-    ).then(() => {
-      window.location.reload()
-    })
+      })
+      .then(res => res.json())
+      .then(json => {
+        dispatch(message.actions.setText({ text: json.text }))
+        setText('')
+      })
+      .catch(err => console.log('error:', err))
   }
 
   return (
@@ -31,7 +37,7 @@ export const MessageUpdate = ({ id, accessToken }) => {
     <UpdateButton type='image' src={pen} onClick={() => setToggled(!toggled)} />
     {toggled &&
     <UpdateForm>
-      <UpdateText rows= '5' type='text' onChange={event => setText(event.target.value)} />
+      <UpdateText rows= '5' type='text' value={text} onChange={event => setText(event.target.value)} />
       <SendUpdate
         type='image'
         src={update}

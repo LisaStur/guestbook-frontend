@@ -10,6 +10,7 @@ const POSTMESSAGE_URL = 'http://localhost:8080/messages'
 export const MessagePost = () => {
   const dispatch = useDispatch()
   const accessToken = useSelector(store => store.user.login.accessToken)
+  const userId = useSelector(store => store.user.login.userId)
   const [text, setText] = useState('')
 
   const handleSubmit = event => {
@@ -23,6 +24,7 @@ export const MessagePost = () => {
       .then(res => res.json())
       .then(json => {
         dispatch(message.actions.setText({ text: json.text }))
+        dispatch(message.actions.setUserId({ userId }))
         setText('')
       })
       .catch(err => console.log('error:', err))

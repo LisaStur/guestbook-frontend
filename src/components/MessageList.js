@@ -11,9 +11,10 @@ const MESSAGES_URL = 'http://localhost:8080/messages'
 
 export const MessageList = () => {
   const text = useSelector(store => store.message.message.text)
-  const like = useSelector(store => store.message.message.like)
+  // const update = useSelector(store => store.message.message.update)
   const [messages, setMessages] = useState([])
   const [isLoading, setIsloading] = useState(true)
+  const currentUser = useSelector(store => store.user.login.userId)
 
   useEffect(() => {
     fetch(MESSAGES_URL)
@@ -22,7 +23,7 @@ export const MessageList = () => {
         setMessages(json)
         setIsloading(false)
       })
-  }, [text, like])
+  }, [text])
 
   return (
     <div>
@@ -31,15 +32,17 @@ export const MessageList = () => {
         <MessageCard key={message._id}>
           <PostedMessage>
             <Message>{message.text}</Message>
-            <Created>
+            <>
               <CreatedBy>{message.author.name}</CreatedBy>
               <CreatedAt>{moment(message.createdAt).fromNow()}</CreatedAt>
-            </Created>
-
+            </>
           </PostedMessage>
           <Interactions>
-            <MessageDelete id={message._id} />
-            <MessageUpdate id={message._id} />
+            {currentUser === message.author._id &&
+            <>
+              <MessageDelete id={message._id} />
+              <MessageUpdate id={message._id} />
+            </>}
             <LikeButton id={message._id} likes={message.like}/>
           </Interactions>
         </MessageCard>
@@ -67,10 +70,10 @@ const PostedMessage = styled.div`
 const Message = styled.p`
   font-size: 20px;
 `
-const Created = styled.div`
+/* const Created = styled.div`
   display: flex;
-  flex-direction: row;  
-`
+  flex-direction: row;
+` */
 const CreatedBy = styled.p`
   font-size: 12px;
   font-style: italic;
