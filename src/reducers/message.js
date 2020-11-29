@@ -4,7 +4,8 @@ const initialState = {
   message: {
     text: '',
     userId: 0,
-    update: false
+    update: false,
+    messageId: 0
   }
 }
 
@@ -14,18 +15,25 @@ export const message = createSlice({
   reducers: {
     setText: (state, action) => {
       const { text } = action.payload
-      console.log(`Message: ${text}`)
+      console.log(`Reducer text: ${text}`)
       state.message.text = text
     },
     setLike: (state, action) => {
       const { like } = action.payload
-      console.log(`Like: ${like}`)
       state.message.like = like
     },
     setUserId: (state, action) => {
       const { userId } = action.payload
-      console.log(`User Id: ${userId}`)
       state.message.userId = userId
+    },
+    setUpdate: (state, action) => {
+      const { update } = action.payload
+      state.message.update = update
+    },
+    setMessageId: (state, action) => {
+      const { messageId } = action.payload
+      console.log(`Message Id reducer: ${messageId}`)
+      state.message.messageId = messageId
     }
   }
 })

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { message } from '../reducers/message'
 import styled from 'styled-components'
@@ -8,7 +8,7 @@ import bin from '../assets/bin.png'
 export const MessageDelete = ({ id }) => {
   const DELETEMESSAGE_URL = `http://localhost:8080/messages/${id}`
   const dispatch = useDispatch()
-
+  const [update, setUpdate] = useState('')
   const handleClick = () => {
     fetch(DELETEMESSAGE_URL,
       {
@@ -20,13 +20,16 @@ export const MessageDelete = ({ id }) => {
       })
       .then(res => res.json())
       .then(json => {
-        dispatch(message.actions.setText({ text: json.text }))
+        dispatch(message.actions.setUpdate({ update }))
+        dispatch(message.actions.setUpdate({ messageId: id }))
+        console.log(json)
+        setUpdate(false)
       })
       .catch(err => console.log('error:', err))
   }
 
   return (
-    <DeleteBin type='image' src={bin} onClick={handleClick}/>
+    <DeleteBin type='image' src={bin} value={update} onChange={event => event.target.value} onClick={handleClick}/>
   )
 }
 

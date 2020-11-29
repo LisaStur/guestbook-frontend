@@ -31,6 +31,7 @@ export const MessagePost = () => {
   }
 
   return (
+    <>
     <MessageForm>
       <Image src={house} alt='house'/>
       <Welcome>Welcome! Please post me a messsage!</Welcome>
@@ -41,6 +42,7 @@ export const MessagePost = () => {
         onClick={handleSubmit}
         disabled={text.length < 5 || text.length > 140} />
     </MessageForm>
+    </>
   )
 }
 

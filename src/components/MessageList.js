@@ -10,20 +10,25 @@ import { MessageDelete } from './MessageDelete'
 const MESSAGES_URL = 'http://localhost:8080/messages'
 
 export const MessageList = () => {
+  const accessToken = useSelector(store => store.user.login.accessToken)
   const text = useSelector(store => store.message.message.text)
-  // const update = useSelector(store => store.message.message.update)
+  const update = useSelector(store => store.message.message.update)
   const [messages, setMessages] = useState([])
   const [isLoading, setIsloading] = useState(true)
   const currentUser = useSelector(store => store.user.login.userId)
 
   useEffect(() => {
-    fetch(MESSAGES_URL)
+    fetch(MESSAGES_URL, {
+      method: 'GET',
+      headers: { Authorization: accessToken, 'Content-Type': 'application/json' }
+    })
       .then(res => res.json())
       .then(json => {
         setMessages(json)
+        console.log(json)
         setIsloading(false)
       })
-  }, [text])
+  }, [text, update])
 
   return (
     <div>

@@ -26,7 +26,9 @@ export const MessageUpdate = ({ id, accessToken }) => {
       })
       .then(res => res.json())
       .then(json => {
-        dispatch(message.actions.setText({ text: json.text }))
+        dispatch(message.actions.setText({ text }))
+        dispatch(message.actions.setUpdate({ messageId: id }))
+        console.log(json)
         setText('')
       })
       .catch(err => console.log('error:', err))
