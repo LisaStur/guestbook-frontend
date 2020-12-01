@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { message } from '../reducers/message'
+import { Logout } from './Logout'
 import house from '../assets/house.png'
 import send from '../assets/send.png'
 
@@ -31,7 +32,7 @@ export const MessagePost = () => {
   }
 
   return (
-    <>
+    <MessageContainer>
     <MessageForm>
       <Image src={house} alt='house'/>
       <Welcome>Welcome! Please post me a messsage!</Welcome>
@@ -42,11 +43,14 @@ export const MessagePost = () => {
         onClick={handleSubmit}
         disabled={text.length < 5 || text.length > 140} />
     </MessageForm>
-    </>
+    <LogoutContainer>
+    <Logout />
+    </LogoutContainer>
+    </MessageContainer>
   )
 }
 
-const MessageForm = styled.form`
+const MessageContainer = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,6 +59,11 @@ const MessageForm = styled.form`
   margin: 5%;
   padding: 12px ;
   background-color: #f5f5e9;
+`
+const MessageForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 const Image = styled.img`
 height: 80px;
@@ -87,4 +96,10 @@ const SendMessage = styled.input`
   :disabled:hover {
     width: 50px;
   }
+`
+const LogoutContainer = styled.div`
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 `
