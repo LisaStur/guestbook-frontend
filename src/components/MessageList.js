@@ -63,7 +63,7 @@ const MessageCard = styled.section`
   border: 2px solid lightgrey;
   border-radius: 5px;
   margin: 5%;
-  padding: 12px;
+  padding: 5%;
   background-color: #f5f5e9;
 `
 const PostedMessage = styled.div`
@@ -75,17 +75,15 @@ const PostedMessage = styled.div`
 const Message = styled.p`
   font-size: 20px;
 `
-/* const Created = styled.div`
-  display: flex;
-  flex-direction: row;
-` */
 const CreatedBy = styled.p`
   font-size: 12px;
   font-style: italic;
-  padding-right: 2%;
+  padding: 0 2% 0 0;
+  margin-bottom: 0;
 `
 const CreatedAt = styled.p`
   font-size: 12px;
+  margin-top: 0;
 `
 const Interactions = styled.div`
   display: flex;

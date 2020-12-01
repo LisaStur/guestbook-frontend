@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import styled from 'styled-components'
 import { user } from '../reducers/user'
+import house from '../assets/house.png'
 
 const SIGNUP_URL = 'http://localhost:8080/users'
 const LOGIN_URL = 'http://localhost:8080/sessions'
@@ -12,6 +14,8 @@ export const Login = () => {
   const accessToken = useSelector((store) => store.user.login.accessToken)
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
+  const [anotherName, setAnotherName] = useState(false)
+  const [wrongPassword, setWrongPassword] = useState(false)
 
   const handleSubmit = event => {
     event.preventDefault()
@@ -28,6 +32,7 @@ export const Login = () => {
         console.log(json)
       })
       .catch(err => console.log('error:', err))
+    setAnotherName(true)
   }
 
   const handleLogin = event => {
@@ -45,6 +50,7 @@ export const Login = () => {
         console.log(json)
       })
       .catch(err => console.log('error:', err))
+    setWrongPassword(true)
   }
 
   useEffect(() => {
@@ -54,18 +60,76 @@ export const Login = () => {
   })
 
   return (
-    <form>
-      Sign Up
-      <label>
-        Name
-        <input required value={name} onChange={event => setName(event.target.value)}/>
-      </label>
-      <label>
-        password
-        <input required type='password' value={password} onChange={event => setPassword(event.target.value)}/>
-      </label>
-      <button type='submit' onClick={handleSubmit}>Sign Up!</button>
-      <button type='submit' onClick={handleLogin}>Sign In!</button>
-    </form>
+    <LoginSection>
+      <Image src={house} alt='house'/>
+      <Welcome>Welcome! Please come in!</Welcome>
+      <InputSection>
+        <Input required minlength="3" type='text' placeholder='Name' value={name} onChange={event => setName(event.target.value)}/>
+      </InputSection>
+      <InputSection>
+        <Input required minlength="3" type='password' placeholder='Password' value={password} onChange={event => setPassword(event.target.value)}/>
+      </InputSection>
+      <ButtonSection>
+      <Button type='submit' onClick={handleSubmit}>Sign Up!</Button>
+      <Button type='submit' onClick={handleLogin}>Sign In!</Button>
+      </ButtonSection>
+      {anotherName && <p>Please use another Name, this is areadly taken!</p>}
+      {wrongPassword && <p>Misspelled the password? Please try again!</p>}
+
+    </LoginSection>
   )
 }
+
+const LoginSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 2px solid lightgrey;
+  border-radius: 5px;
+  margin: 5%;
+  padding: 12px ;
+  background-color: #f5f5e9;
+`
+const Image = styled.img`
+  height: 280px;
+  width: auto:
+`
+const Welcome = styled.h1`
+  font-size: 28px;
+`
+const InputSection = styled.label`
+  width: 80%;
+  margin: 1%;
+`
+const Input = styled.input`
+  width: 100%;
+  font-size: 18px;
+`
+const ButtonSection = styled.div`
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+`
+const Button = styled.button`
+  padding: 25px 10px;
+  background-color: green;
+  background-image: linear-gradient(lightgreen,#495139);
+  color: white;
+  font-size: 16px;
+  border-radius: 50%;
+  border: 0;
+  :hover {
+    background-image: linear-gradient(lightgreen,green);
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    transition: 0.3s;
+
+  }
+  :active {
+    transition: 0.1s;
+  }
+  :focus {
+    outline: none;
+  }
+  `
