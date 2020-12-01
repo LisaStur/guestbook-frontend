@@ -7,30 +7,8 @@ import { Guestbook } from './pages/Guestbook'
 import { Login } from './pages/Login'
 import { message } from './reducers/message'
 
-const saveToLocalStorage = (state) => {
-  try {
-    const serializedState = JSON.stringify(state)
-    localStorage.setItem('state', serializedState)
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-const loadFromLocalStorage = () => {
-  try {
-    const serializedState = localStorage.getItem('state')
-    if (serializedState === null) return undefined
-    return JSON.parse(serializedState)
-  } catch (error) {
-    console.log(error)
-    return undefined
-  }
-}
-
 const reducer = combineReducers({ user: user.reducer, message: message.reducer })
-const persistedState = loadFromLocalStorage()
-const store = configureStore({ reducer, persistedState })
-store.subscribe(() => saveToLocalStorage(store.getState()))
+const store = configureStore({ reducer })
 
 const App = () => {
   return (

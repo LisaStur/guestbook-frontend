@@ -27,9 +27,10 @@ export const MessageUpdate = ({ id, accessToken }) => {
       .then(res => res.json())
       .then(json => {
         dispatch(message.actions.setText({ text }))
-        dispatch(message.actions.setUpdate({ messageId: id }))
+        dispatch(message.actions.setUpdate({ update: true }))
         console.log(json)
         setText('')
+        setToggled(!toggled)
       })
       .catch(err => console.log('error:', err))
   }

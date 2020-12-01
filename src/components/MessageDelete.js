@@ -20,8 +20,8 @@ export const MessageDelete = ({ id }) => {
       })
       .then(res => res.json())
       .then(json => {
-        dispatch(message.actions.setUpdate({ update }))
-        dispatch(message.actions.setUpdate({ messageId: id }))
+        dispatch(message.actions.setUpdate({ update: true }))
+        dispatch(message.actions.setUpdate({ update: false }))
         console.log(json)
         setUpdate(false)
       })
