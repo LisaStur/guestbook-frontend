@@ -33,19 +33,19 @@ export const MessagePost = () => {
 
   return (
     <MessageContainer>
-    <MessageForm>
       <Image src={house} alt='house'/>
-      <Welcome>Welcome! Please post me a messsage!</Welcome>
-      <TextArea rows= '5' type='text' value={text} onChange={event => setText(event.target.value)} />
-      <SendMessage
-        type='image'
-        src={send}
-        onClick={handleSubmit}
-        disabled={text.length < 5 || text.length > 140} />
-    </MessageForm>
-    <LogoutContainer>
-    <Logout />
-    </LogoutContainer>
+      <MessageForm>
+        <Welcome>Welcome! Please post me a messsage!</Welcome>
+        <TextArea rows= '5' type='text' value={text} onChange={event => setText(event.target.value)} />
+        <SendMessage
+          type='image'
+          src={send}
+          onClick={handleSubmit}
+          disabled={text.length < 5 || text.length > 140} />
+      </MessageForm>
+      <LogoutContainer>
+        <Logout />
+      </LogoutContainer>
     </MessageContainer>
   )
 }
@@ -57,8 +57,12 @@ const MessageContainer = styled.section`
   border: 2px solid lightgrey;
   border-radius: 5px;
   margin: 5%;
-  padding: 12px ;
+  padding: 12px;
   background-color: #f5f5e9;
+  @media (min-width: 668px) {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
 `
 const MessageForm = styled.form`
   display: flex;
@@ -83,7 +87,6 @@ const SendMessage = styled.input`
   height: auto; 
   width: 50px;
   transition: 0.5s;
-
   :hover {
     width: 60px;
   }
@@ -103,4 +106,7 @@ const LogoutContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  @media (min-width: 668px) {
+    width: auto;
+  }
 `

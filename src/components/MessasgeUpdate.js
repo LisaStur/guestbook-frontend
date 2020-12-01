@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import { message } from '../reducers/message'
-
 import pen from '../assets/pen.png'
 import update from '../assets/update.png'
 
@@ -84,7 +83,6 @@ const SendUpdate = styled.input`
   height: auto;
   padding-top: 5%;
   transition: 0.5s;
- 
   :hover {
     width: 35px;
   }

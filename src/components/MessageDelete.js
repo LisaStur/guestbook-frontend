@@ -34,17 +34,17 @@ export const MessageDelete = ({ id }) => {
 }
 
 const DeleteBin = styled.input`
-width: 40px;
-height: auto;
-transition: 0.5s;
-:hover {
-  width: 50px;
-}
-:active {
-  width: 60px;
-  transition: 0.1s;
-}
-:focus {
-  outline: none;
-}
+  width: 40px;
+  height: auto;
+  transition: 0.5s;
+  :hover {
+    width: 50px;
+  }
+  :active {
+    width: 60px;
+    transition: 0.1s;
+  }
+  :focus {
+    outline: none;
+  }
 `

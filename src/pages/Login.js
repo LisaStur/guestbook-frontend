@@ -62,20 +62,23 @@ export const Login = () => {
   return (
     <LoginSection>
       <Image src={house} alt='house'/>
-      <Welcome>Welcome! Please come in!</Welcome>
-      <InputSection>
-        <Input required minlength="3" type='text' placeholder='Name' value={name} onChange={event => setName(event.target.value)}/>
-      </InputSection>
-      <InputSection>
-        <Input required minlength="3" type='password' placeholder='Password' value={password} onChange={event => setPassword(event.target.value)}/>
-      </InputSection>
-      <ButtonSection>
-      <Button type='submit' onClick={handleSubmit}>Sign Up!</Button>
-      <Button type='submit' onClick={handleLogin}>Sign In!</Button>
-      </ButtonSection>
-      {anotherName && <p>Please use another Name, this is areadly taken!</p>}
-      {wrongPassword && <p>Misspelled the password? Please try again!</p>}
-
+      <MidScreen>
+        <BigScreen>
+          <Welcome>Welcome! Please come in!</Welcome>
+          <InputSection>
+            <Input required minlength="3" type='text' placeholder='Name' value={name} onChange={event => setName(event.target.value)}/>
+          </InputSection>
+          <InputSection>
+            <Input required minlength="3" type='password' placeholder='Password' value={password} onChange={event => setPassword(event.target.value)}/>
+          </InputSection>
+          {anotherName && <p>Please use another Name, this is areadly taken!</p>}
+          {wrongPassword && <p>Misspelled the password? Please try again!</p>}
+        </BigScreen>
+        <ButtonSection>
+          <Button type='submit' onClick={handleSubmit}>Sign Up!</Button>
+          <Button type='submit' onClick={handleLogin}>Sign In!</Button>
+        </ButtonSection>
+      </MidScreen>
     </LoginSection>
   )
 }
@@ -90,27 +93,56 @@ const LoginSection = styled.section`
   margin: 5%;
   padding: 12px ;
   background-color: #f5f5e9;
+  @media (min-width: 668px) {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+`
+const MidScreen = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    padding: 0;
+    justify-content: space-evenly;
+  }
+`
+const BigScreen = styled.div`
+  display: flex;
+  flex-direction: column;
 `
 const Image = styled.img`
   height: 280px;
-  width: auto:
+  width: auto;
 `
 const Welcome = styled.h1`
   font-size: 28px;
+  @media (min-width: 1024px) {
+    width: 80%;
+   }
 `
 const InputSection = styled.label`
-  width: 80%;
+  width: 100%;
   margin: 1%;
+  @media (min-width: 1024px) {
+    width: 80%;
+  }
 `
 const Input = styled.input`
   width: 100%;
   font-size: 18px;
 `
 const ButtonSection = styled.div`
-  width: 50%;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  padding: 2%;
+  @media (min-width: 1024px) {
+    flex-direction: column;
+    padding: 0;
+    justify-content: space-evenly;
+  }
 `
 const Button = styled.button`
   padding: 25px 10px;
@@ -124,7 +156,6 @@ const Button = styled.button`
     background-image: linear-gradient(lightgreen,green);
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     transition: 0.3s;
-
   }
   :active {
     transition: 0.1s;

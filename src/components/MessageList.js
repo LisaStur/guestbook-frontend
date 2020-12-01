@@ -51,7 +51,7 @@ export const MessageList = () => {
             <LikeButton id={message._id} likes={message.like}/>
           </Interactions>
         </MessageCard>
-      )) }
+      ))}
     </div>
   )
 }

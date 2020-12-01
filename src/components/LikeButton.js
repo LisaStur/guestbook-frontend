@@ -23,7 +23,6 @@ export const LikeButton = ({ id, likes }) => {
       <Liked>{like}</Liked>
       <LikeThumb type='image' src={thumb} onClick={handleClick}/>
     </LikeSection>
-
   )
 }
 
@@ -32,7 +31,6 @@ const LikeSection = styled.div`
   flex-direction: row;  
   justify-content: flex-end;
 `
-
 const LikeThumb = styled.input`
   height: 50px;
   transition: 0.5s;
