@@ -6,7 +6,7 @@ import bin from '../assets/bin.png'
 
 // eslint-disable-next-line react/prop-types
 export const MessageDelete = ({ id }) => {
-  const DELETEMESSAGE_URL = `http://localhost:8080/messages/${id}`
+  const DELETEMESSAGE_URL = `https://lisas-guestbook2020.herokuapp.com/messages/${id}`
   const dispatch = useDispatch()
   const [update, setUpdate] = useState('')
   const handleClick = () => {
@@ -22,7 +22,6 @@ export const MessageDelete = ({ id }) => {
       .then(json => {
         dispatch(message.actions.setUpdate({ update: true }))
         dispatch(message.actions.setUpdate({ update: false }))
-        console.log(json)
         setUpdate(false)
       })
       .catch(err => console.log('error:', err))

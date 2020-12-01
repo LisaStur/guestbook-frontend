@@ -7,7 +7,7 @@ import { Spinner } from './Spinner'
 import { MessageUpdate } from './MessasgeUpdate'
 import { MessageDelete } from './MessageDelete'
 
-const MESSAGES_URL = 'http://localhost:8080/messages'
+const MESSAGES_URL = 'https://lisas-guestbook2020.herokuapp.com/messages'
 
 export const MessageList = () => {
   const accessToken = useSelector(store => store.user.login.accessToken)
@@ -25,7 +25,6 @@ export const MessageList = () => {
       .then(res => res.json())
       .then(json => {
         setMessages(json)
-        console.log(json)
         setIsloading(false)
       })
   }, [text, update])

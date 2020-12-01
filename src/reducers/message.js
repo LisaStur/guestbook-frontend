@@ -15,7 +15,6 @@ export const message = createSlice({
   reducers: {
     setText: (state, action) => {
       const { text } = action.payload
-      console.log(`Reducer text: ${text}`)
       state.message.text = text
     },
     setLike: (state, action) => {
@@ -32,7 +31,6 @@ export const message = createSlice({
     },
     setMessageId: (state, action) => {
       const { messageId } = action.payload
-      console.log(`Message Id reducer: ${messageId}`)
       state.message.messageId = messageId
     }
   }

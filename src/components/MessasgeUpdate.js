@@ -7,7 +7,7 @@ import update from '../assets/update.png'
 
 // eslint-disable-next-line react/prop-types
 export const MessageUpdate = ({ id, accessToken }) => {
-  const UPDATEMESSAGE_URL = `http://localhost:8080/messages/${id}/update`
+  const UPDATEMESSAGE_URL = `https://lisas-guestbook2020.herokuapp.com/messages/${id}/update`
   const dispatch = useDispatch()
   const [text, setText] = useState('')
   const [toggled, setToggled] = useState(false)
@@ -28,7 +28,6 @@ export const MessageUpdate = ({ id, accessToken }) => {
       .then(json => {
         dispatch(message.actions.setText({ text }))
         dispatch(message.actions.setUpdate({ update: true }))
-        console.log(json)
         setText('')
         setToggled(!toggled)
       })

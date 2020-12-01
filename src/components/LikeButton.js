@@ -7,7 +7,7 @@ export const LikeButton = ({ id, likes }) => {
   const [like, setLike] = useState(likes)
 
   const handleClick = () => {
-    fetch(`http://localhost:8080/messages/${id}/like`,
+    fetch(`https://lisas-guestbook2020.herokuapp.com/messages/${id}/like`,
       {
         method: 'PUT',
         headers: {

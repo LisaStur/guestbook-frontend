@@ -6,7 +6,7 @@ import { Logout } from './Logout'
 import house from '../assets/house.png'
 import send from '../assets/send.png'
 
-const POSTMESSAGE_URL = 'http://localhost:8080/messages'
+const POSTMESSAGE_URL = 'https://lisas-guestbook2020.herokuapp.com/messages'
 
 export const MessagePost = () => {
   const dispatch = useDispatch()

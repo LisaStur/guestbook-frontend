@@ -5,8 +5,8 @@ import styled from 'styled-components'
 import { user } from '../reducers/user'
 import house from '../assets/house.png'
 
-const SIGNUP_URL = 'http://localhost:8080/users'
-const LOGIN_URL = 'http://localhost:8080/sessions'
+const SIGNUP_URL = 'https://lisas-guestbook2020.herokuapp.com/users'
+const LOGIN_URL = 'https://lisas-guestbook2020.herokuapp.com/sessions'
 
 export const Login = () => {
   const dispatch = useDispatch()
@@ -29,7 +29,6 @@ export const Login = () => {
       .then(json => {
         dispatch(user.actions.setAccessToken({ accessToken: json.accessToken }))
         dispatch(user.actions.setUserId({ userId: json.userId }))
-        console.log(json)
       })
       .catch(err => console.log('error:', err))
     setAnotherName(true)
@@ -47,7 +46,6 @@ export const Login = () => {
       .then(json => {
         dispatch(user.actions.setAccessToken({ accessToken: json.accessToken }))
         dispatch(user.actions.setUserId({ userId: json.userId }))
-        console.log(json)
       })
       .catch(err => console.log('error:', err))
     setWrongPassword(true)
