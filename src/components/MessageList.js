@@ -14,7 +14,7 @@ export const MessageList = () => {
   const text = useSelector(store => store.message.message.text)
   const update = useSelector(store => store.message.message.update)
   const [messages, setMessages] = useState([])
-  const [isLoading, setIsloading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
   const currentUser = useSelector(store => store.user.login.userId)
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export const MessageList = () => {
       .then(res => res.json())
       .then(json => {
         setMessages(json)
-        setIsloading(false)
+        setIsLoading(false)
       })
   }, [text, update])
 

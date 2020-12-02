@@ -14,11 +14,13 @@ export const Login = () => {
   const accessToken = useSelector((store) => store.user.login.accessToken)
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
   const [anotherName, setAnotherName] = useState(false)
   const [wrongPassword, setWrongPassword] = useState(false)
 
   const handleSubmit = event => {
     event.preventDefault()
+    setIsLoading(true)
 
     fetch(SIGNUP_URL, {
       method: 'POST',
@@ -29,9 +31,11 @@ export const Login = () => {
       .then(json => {
         dispatch(user.actions.setAccessToken({ accessToken: json.accessToken }))
         dispatch(user.actions.setUserId({ userId: json.userId }))
+        setIsLoading(false)
       })
       .catch(err => console.log('error:', err))
     setAnotherName(true)
+    setIsLoading(false)
   }
 
   const handleLogin = event => {
@@ -73,8 +77,12 @@ export const Login = () => {
           {wrongPassword && <p>Misspelled the password? Please try again!</p>}
         </BigScreen>
         <ButtonSection>
-          <Button type='submit' onClick={handleSubmit}>Sign Up!</Button>
-          <Button type='submit' onClick={handleLogin}>Sign In!</Button>
+          <Button type='submit' onClick={handleSubmit}>
+            {isLoading ? <ButtonText>Loading...</ButtonText> : <ButtonText>Sign Up!</ButtonText>}
+          </Button>
+          <Button type='submit' onClick={handleLogin}>
+          {isLoading ? <ButtonText>Loading...</ButtonText> : <ButtonText>Sign In!</ButtonText>}
+          </Button>
         </ButtonSection>
       </MidScreen>
     </LoginSection>
@@ -113,6 +121,7 @@ const BigScreen = styled.div`
 const Image = styled.img`
   height: 280px;
   width: auto;
+  padding: 2%;
 `
 const Welcome = styled.h1`
   font-size: 28px;
@@ -143,7 +152,7 @@ const ButtonSection = styled.div`
   }
 `
 const Button = styled.button`
-  padding: 25px 10px;
+  padding: 15px 10px;
   background-color: green;
   background-image: linear-gradient(lightgreen,#495139);
   color: white;
@@ -161,4 +170,7 @@ const Button = styled.button`
   :focus {
     outline: none;
   }
+  `
+const ButtonText = styled.p`
+  width: 70px;
   `
