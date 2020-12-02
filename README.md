@@ -5,6 +5,6 @@ A guestbook where you after signing up/logging in can post your own messages and
 <p>React, Redux, Reacat Routes, JavaScript, HTML, Styled Components.</p>
 <h2>View it Live</h2>
 Frontend: https://lisas-guestbook.netlify.app<br/>
-Please allow for the backend to wake up, it might take a few moments.
+Please allow a few moments for the backend to wake up.
 <h2>Backend</h2> 
 GitHub: https://github.com/LisaStur/backend-guestbook 
