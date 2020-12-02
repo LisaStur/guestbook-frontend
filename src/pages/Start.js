@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { Spinner } from '../components/Spinner'
 import house from '../assets/house.png'
 
-const START_URL = 'https://lisas-guestbook2020.herokuapp.com/messages'
+const START_URL = 'https://lisas-guestbook2020.herokuapp.com/'
 
 export const Start = () => {
   const history = useHistory()
