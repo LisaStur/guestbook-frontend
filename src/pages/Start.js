@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Spinner } from '../components/Spinner'
 
-const START_URL = 'https://lisas-guestbook2020.herokuapp.com'
+const START_URL = 'https://lisas-guestbook2020.herokuapp.com/users'
 
 export const Start = () => {
   const history = useHistory()
