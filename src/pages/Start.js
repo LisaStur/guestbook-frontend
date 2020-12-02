@@ -29,9 +29,12 @@ export const Start = () => {
 
   return (
     <StartContainer>
-      <ImageSection>
-        <Image src={house} alt='house'/>
-      </ImageSection>
+      <HouseAndWait>
+        <ImageSection>
+          <Image src={house} alt='house'/>
+        </ImageSection>
+        <Wait>Please wait a mo, we will soon awake!</Wait>
+      </HouseAndWait>
       <Spinner />
     </StartContainer>
 
@@ -42,7 +45,12 @@ const StartContainer = styled.section`
   flex-direction: column;
   @media (min-width: 668px) {
     flex-direction: row;
+    justify-content: space-evenly;
   }
+`
+const HouseAndWait = styled.div`
+  display: flex;
+  flex-direction: column;
 `
 const ImageSection = styled.div`
   display: flex;
@@ -54,4 +62,9 @@ const Image = styled.img`
   height: 280px;
   width: auto;
   padding: 2%;
+`
+const Wait = styled.h1`
+  font-size: 22px;
+  text-align: center;
+  padding: 0 2%;
 `
