@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Spinner } from '../components/Spinner'
 
-const START_URL = 'https://lisas-guestbook2020.herokuapp.com/users'
+const START_URL = 'https://lisas-guestbook2020.herokuapp.com/messages'
 
 export const Start = () => {
   const history = useHistory()
+  const [res, setRes] = useState()
+
   useEffect(() => {
     fetch(START_URL, {
       method: 'GET',
@@ -13,10 +15,16 @@ export const Start = () => {
     })
       .then(res => res.json())
       .then(json => {
-        console.log(json)
-        history.push('/login')
+        setRes(json)
       })
   }, [])
+
+  useEffect(() => {
+    if (res) {
+      history.push('/login')
+    }
+  })
+
   return (
     <Spinner />
   )
